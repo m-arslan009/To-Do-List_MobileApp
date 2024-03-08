@@ -16,28 +16,32 @@ const addButtonEl = document.getElementById("add-btn")
 const shoppingListEl = document.getElementById("shopping-list")
 const booksInDB = ref(database, "books");
 
-// way to get values from database
-onValue(booksInDB, function(snapshot){
-    let bookArr = Object.values(snapshot.val())
-    for(let i = 0; i < bookArr.length; i++) {
-        let currentBook = bookArr[i];
-        console.log(currentBook)
+// way to retrieve data from firebase 
+onValue(shoppingListInDB, function(snapshot) {
+    let shopList = Object.values(snapshot.val());
+    clearScreen();
+    for(let i = 0; i < shopList.length; i++) {
+        let currentListItem = shopList[i];
+        appendValToScreen(currentListItem);
+        console.log(currentListItem);
     }
-    // console.log(bookArr)
-});
+})
 
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value
     
     push(shoppingListInDB, inputValue)
     clearInputField();
-    pushUserInputValToScreen(inputValue);
 })
 
 function clearInputField(val) {
     inputFieldEl.value = ""
 }
 
-function pushUserInputValToScreen(val) {
+function clearScreen() {
+    shoppingListEl.innerHTML = "";
+}
+
+function appendValToScreen(val) {
     shoppingListEl.innerHTML += `<li>${val}</li>`;
 }
