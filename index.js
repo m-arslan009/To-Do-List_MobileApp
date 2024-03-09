@@ -18,12 +18,17 @@ const booksInDB = ref(database, "books");
 
 // way to retrieve data from firebase 
 onValue(shoppingListInDB, function(snapshot) {
-    let shopList = Object.values(snapshot.val());
+    // let shopList = Object.values(snapshot.val());
+    let shopList = Object.entries(snapshot.val())
     clearScreen();
     for(let i = 0; i < shopList.length; i++) {
         let currentListItem = shopList[i];
-        appendValToScreen(currentListItem);
-        console.log(currentListItem);
+
+        let currentListItemID = currentListItem[0];
+        let currentListItemVal = currentListItem[1];
+        console.log(currentListItemID)
+        appendValToScreen(currentListItemVal);
+        console.log(currentListItemVal);
     }
 })
 
