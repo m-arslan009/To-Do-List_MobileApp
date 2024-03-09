@@ -24,11 +24,11 @@ onValue(shoppingListInDB, function(snapshot) {
     for(let i = 0; i < shopList.length; i++) {
         let currentListItem = shopList[i];
 
-        let currentListItemID = currentListItem[0];
-        let currentListItemVal = currentListItem[1];
-        console.log(currentListItemID)
-        appendValToScreen(currentListItemVal);
-        console.log(currentListItemVal);
+        // let currentListItemID = currentListItem[0];
+        // let currentListItemVal = currentListItem[1];
+        // console.log(currentListItemID)
+        appendValToScreen(currentListItem);
+        console.log(currentListItem);
     }
 })
 
@@ -47,6 +47,14 @@ function clearScreen() {
     shoppingListEl.innerHTML = "";
 }
 
-function appendValToScreen(val) {
-    shoppingListEl.innerHTML += `<li>${val}</li>`;
+function appendValToScreen(item) {
+    // shoppingListEl.innerHTML += `<li>${val}</li>`;
+
+    let itemID = item[0];
+    let itemValue = item[1];
+    let newEl = document.createElement("li");
+
+    newEl.textContent = itemValue;
+    console.log(itemID)
+    shoppingListEl.append(newEl)
 }
