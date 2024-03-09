@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"
+import { getDatabase, ref, push, onValue , remove} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://todo-mobileapp-1021b-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -57,4 +57,10 @@ function appendValToScreen(item) {
     newEl.textContent = itemValue;
     console.log(itemID)
     shoppingListEl.append(newEl)
+
+    newEl.addEventListener("click", function(){
+        console.log(itemID)
+        let exactLocation = ref(database, `shoppingList/${itemID}`);
+        remove(exactLocation);
+    })
 }

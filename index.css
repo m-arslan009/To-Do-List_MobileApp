@@ -77,4 +77,11 @@ li {
     box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
     flex-grow: 1;
     font-family:cursive;
+    cursor: pointer;
+}
+
+li:hover {
+    background-color: orangered;
+    color: white;
+
 }
